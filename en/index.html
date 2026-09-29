@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C++ Ukraine — the Ukrainian C++ community</title>
+  <meta name="description" content="A community for people who write C++ and want to talk about it in Ukrainian: a chat, a news channel and meetups with talks.">
+  <link rel="canonical" href="https://cpp.org.ua/en/">
+  <link rel="alternate" hreflang="uk" href="https://cpp.org.ua/">
+  <link rel="alternate" hreflang="en" href="https://cpp.org.ua/en/">
+  <link rel="alternate" hreflang="x-default" href="https://cpp.org.ua/">
+  <meta name="theme-color" content="#131313">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:site_name" content="C++ Ukraine">
+  <meta property="og:title" content="C++ Ukraine — the Ukrainian C++ community">
+  <meta property="og:description" content="For people who write C++ and want to talk about it in Ukrainian.">
+  <meta property="og:url" content="https://cpp.org.ua/en/">
+  <meta property="og:image" content="https://cpp.org.ua/og-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The cpp::ua logo and the words “Ukrainian C++ community”">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <link rel="preload" href="../fonts/FixelText-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/FixelDisplay-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="i-telegram" viewBox="0 0 24 24"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  </svg>
+
+  <aside class="banner" aria-label="Support for the Defense Forces of Ukraine">
+    <span class="banner-flag" aria-hidden="true"></span>
+    <span>Support the Defense Forces of Ukraine</span>
+    <a href="https://savelife.in.ua/en/donate-en/">Come Back Alive<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </aside>
+
+  <header class="container header">
+    <a class="logo" href="./" aria-label="cpp::ua — home">cpp<span class="logo-sep" aria-hidden="true"><i></i><i></i><i></i><i></i></span>ua</a>
+    <nav class="header-nav">
+      <a class="header-link" href="#join">Get involved</a>
+      <a class="lang-switch" href="../" hreflang="uk" lang="uk" aria-label="УКР — українська версія">УКР</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div class="hero-copy">
+        <h1>Ukrainian C++ community</h1>
+        <p class="lead">A place to ask questions, review code, discuss the latest standard and share experience in Ukrainian. English is welcome in the chat too.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://t.me/cpp_ua_chat">
+            <svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg>Join the chat
+          </a>
+          <a class="btn btn-secondary" href="https://t.me/cpp_ua">
+            <svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg>News channel
+          </a>
+        </div>
+      </div>
+
+      <figure class="card-code">
+        <figcaption>community.hpp</figcaption>
+<pre><code><span class="kw">constexpr</span> cpp::ua::community card{
+  <span class="fld">.name</span>     = <span class="str">"C++ Ukraine"</span>,
+  <span class="fld">.language</span> = <span class="str">"Ukrainian"</span>,
+  <span class="fld">.chat</span>     = <a class="str" href="https://t.me/cpp_ua_chat">"t.me/cpp_ua_chat"</a>,
+  <span class="fld">.channel</span>  = <a class="str" href="https://t.me/cpp_ua">"t.me/cpp_ua"</a>,
+  <span class="fld">.youtube</span>  = <a class="str" href="https://www.youtube.com/@cppua">"youtube.com/@cppua"</a>,
+  <span class="fld">.github</span>   = <a class="str" href="https://github.com/cpp-ua">"github.com/cpp-ua"</a>,
+  <span class="fld">.email</span>    = <a class="str" href="mailto:hello@cpp.org.ua">"hello@cpp.org.ua"</a>,
+};</code></pre>
+      </figure>
+    </section>
+
+    <section class="container block" aria-labelledby="plans-title">
+      <h2 id="plans-title">What we’re planning</h2>
+      <p class="block-lead">The community has just started, and what it becomes depends on its first members.<br>Everyone who writes C++ is welcome, from students to seasoned engineers.</p>
+      <div class="columns">
+        <div class="column">
+          <h3>Channel posts</h3>
+          <p>C++ news, reviews of talks and articles.</p>
+        </div>
+        <div class="column">
+          <h3>Online meetups</h3>
+          <p>Talks by community members, with recordings on <a href="https://www.youtube.com/@cppua">YouTube</a>.</p>
+        </div>
+        <div class="column">
+          <h3>In-person meetups</h3>
+          <p>Once the community grows.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container block" id="join" aria-labelledby="join-title">
+      <h2 id="join-title">Get involved</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Help organize</h3>
+          <p>We’re looking for people to write channel posts, moderate the chat and, later on, run meetups.</p>
+          <a class="card-link" href="mailto:hello@cpp.org.ua?subject=I%20want%20to%20help">Write to us<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="card">
+          <h3>Speak at a meetup</h3>
+          <p>Online meetups will start later on, but we’re already collecting talk topics.</p>
+          <a class="card-link" href="mailto:hello@cpp.org.ua?subject=Talk">Propose a topic<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="card">
+          <h3>For companies</h3>
+          <p>We’d welcome a post for the channel from your team’s engineers and, later on, a talk at an online meetup.</p>
+          <a class="card-link" href="mailto:hello@cpp.org.ua?subject=Partnership">Let’s talk<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div class="footer-brand">
+        <a class="logo logo-small" href="./" aria-label="cpp::ua — home">cpp<span class="logo-sep" aria-hidden="true"><i></i><i></i><i></i><i></i></span>ua</a>
+        <span>C++ Ukraine, since 2026</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://t.me/cpp_ua_chat">Chat</a></li>
+        <li><a href="https://t.me/cpp_ua">Channel</a></li>
+        <li><a href="https://www.youtube.com/@cppua">YouTube</a></li>
+        <li><a href="https://github.com/cpp-ua">GitHub</a></li>
+        <li><a href="rules/">Rules</a></li>
+        <li><a href="mailto:hello@cpp.org.ua">hello@cpp.org.ua</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

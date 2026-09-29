@@ -1,0 +1,62 @@
+<!doctype html>
+<!--
+  Telegram avatar template, 640x640. Pick the variant with the URL hash:
+  #channel (stacked cpp :: ua) or #chat ([[ua]]).
+  Regenerate from the repository root:
+    google-chrome --headless=new --hide-scrollbars --virtual-time-budget=5000 --window-size=640,640 \
+      --screenshot=brand/avatar_channel.png "file://$PWD/brand/avatar.html#channel"
+    google-chrome --headless=new --hide-scrollbars --virtual-time-budget=5000 --window-size=640,640 \
+      --screenshot=brand/avatar_chat.png "file://$PWD/brand/avatar.html#chat"
+-->
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Avatar template</title>
+<style>
+  @font-face { font-family: "Fixel Display"; src: url("../fonts/FixelDisplay-Bold.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "Fixel Text"; src: url("../fonts/FixelText-Regular.woff2") format("woff2"); font-weight: 400; }
+
+  html, body { margin: 0; width: 640px; height: 640px; overflow: hidden; }
+  body {
+    display: grid;
+    place-items: center;
+    background: #131313;
+    color: #f4f4f4;
+    font-family: "Fixel Display", sans-serif;
+    font-weight: 700;
+  }
+  .variant { display: none; }
+  body[data-variant="channel"] .channel,
+  body[data-variant="chat"] .chat { display: flex; }
+
+  /* Channel: cpp, the :: dots, ua, stacked (the dots sit where a colon would) */
+  .channel { flex-direction: column; align-items: center; font-size: 176px; line-height: 1; letter-spacing: -0.01em; }
+  .channel .word { display: block; }
+  .dots { display: grid; grid-template-columns: repeat(2, 44px); gap: 12px 36px; margin: 22px 0 18px; }
+  .dots i { width: 44px; height: 44px; border-radius: 50%; background: #0057b7; }
+  .dots i:nth-child(n + 3) { background: #ffd700; }
+  .channel .ua { margin-top: -24px; }
+
+  /* Chat: [[ua]], blue opening and yellow closing brackets */
+  .chat { align-items: baseline; font-size: 150px; line-height: 1; }
+  .chat .open { color: #0057b7; }
+  .chat .close { color: #ffd700; }
+  .chat .open, .chat .close { font-family: "Fixel Text", sans-serif; font-weight: 400; letter-spacing: 0.02em; }
+  .chat .text { margin: 0 0.06em; }
+</style>
+</head>
+<body>
+  <div class="variant channel">
+    <span class="word">cpp</span>
+    <span class="dots"><i></i><i></i><i></i><i></i></span>
+    <span class="word ua">ua</span>
+  </div>
+  <div class="variant chat">
+    <span class="open">[[</span><span class="text">ua</span><span class="close">]]</span>
+  </div>
+  <script>
+    document.body.dataset.variant = location.hash.slice(1) || "channel";
+  </script>
+</body>
+</html>

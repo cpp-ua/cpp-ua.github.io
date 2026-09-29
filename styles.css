@@ -1,0 +1,624 @@
+@font-face {
+  font-family: "Fixel Text";
+  src: url("fonts/FixelText-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Text";
+  src: url("fonts/FixelText-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Display";
+  src: url("fonts/FixelDisplay-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("fonts/IBMPlexMono-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("fonts/IBMPlexMono-400-cyrillic.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/*
+  Palette. Colour comes only from the two brand sources: the Ukrainian flag
+  (#0057b7, #ffd700) and the C++ logo, whose blue has the same hue (~210deg).
+  Everything else is neutral grey, so there is no tinted "default" dark theme.
+  Flag blue is too dark for text on a dark background (~2.7:1), so it is used
+  for fills only; links use a lighter tint of the same hue.
+*/
+:root {
+  --bg: #131313;
+  --surface: #1b1b1b;
+  --border: #2b2b2b;
+  --border-strong: #666666;
+  --text: #f4f4f4;
+  --muted: #a3a3a3;
+  --link: #6aa6ec;
+  --blue: #0057b7;
+  --yellow: #ffd700;
+  --cta-bg: var(--yellow);
+  --cta-fg: #131313;
+  --cta-hover: #ffe24d;
+  --code-bg: #0d0d0d;
+  --code-border: var(--border);
+  --code-text: #e6e6e6;
+  --code-muted: #8a8a8a;
+  --code-kw: #6aa6ec;
+  --code-str: var(--yellow);
+
+  --sans: "Fixel Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: "Fixel Display", "Fixel Text", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --max: 1080px;
+  --radius: 12px;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.container {
+  max-width: var(--max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+/* Support banner in the page's own surface colour; the flag is the only
+   colour in it, as on macpaw.com and preply.com. */
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px 10px;
+  padding: 9px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.banner-flag {
+  flex: none;
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(var(--blue) 50%, var(--yellow) 50%);
+}
+
+.banner a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.banner a .icon {
+  width: 1em;
+  height: 1em;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 32px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-link,
+.lang-switch {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.lang-switch {
+  padding: 4px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.header-link:hover,
+.lang-switch:hover {
+  color: var(--text);
+}
+
+/* Logo: cpp::ua, where :: are two blue-over-yellow colons */
+
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.7rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: var(--text);
+}
+
+/* Dots are absolutely positioned so the box has no baseline of its own:
+   its bottom edge then sits on the text baseline, like a real colon. */
+.logo-sep {
+  position: relative;
+  display: inline-block;
+  width: 0.53em;
+  height: 0.47em;
+  margin: 0 0.08em 0 0.1em;
+}
+
+.logo-sep i {
+  position: absolute;
+  width: 0.2em;
+  height: 0.2em;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.logo-sep i:nth-child(1) { left: 0; top: 0; }
+.logo-sep i:nth-child(2) { right: 0; top: 0; }
+.logo-sep i:nth-child(3) { left: 0; bottom: 0; background: var(--yellow); }
+.logo-sep i:nth-child(4) { right: 0; bottom: 0; background: var(--yellow); }
+
+.logo-small {
+  font-size: 1.35rem;
+}
+
+/* Hero */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 56px;
+  align-items: center;
+  padding-top: 88px;
+  padding-bottom: 48px;
+}
+
+h1 {
+  font-family: var(--display);
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.lead {
+  margin-top: 22px;
+  max-width: 32em;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn-primary {
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+}
+
+.btn-primary:hover {
+  background: var(--cta-hover);
+  color: var(--cta-fg);
+}
+
+.btn-secondary {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* The business card itself, written as C++ */
+
+.card-code {
+  margin: 0;
+  min-width: 0;
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.card-code figcaption {
+  padding: 11px 20px;
+  border-bottom: 1px solid var(--code-border);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--code-muted);
+}
+
+.card-code pre {
+  margin: 0;
+  padding: 22px 20px 24px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--code-text);
+}
+
+.card-code .kw { color: var(--code-kw); }
+.card-code .fld { color: var(--code-muted); }
+.card-code .str { color: var(--code-str); }
+
+/* A faint underline tells links apart from plain strings like the name */
+.card-code a.str {
+  text-decoration: underline;
+  text-decoration-color: rgb(255 215 0 / 0.35);
+  text-underline-offset: 0.25em;
+}
+
+.card-code a.str:hover {
+  text-decoration-color: currentColor;
+  color: var(--code-str);
+}
+
+/* Sections */
+
+.block {
+  padding-top: 72px;
+  padding-bottom: 8px;
+}
+
+.block + .block {
+  padding-top: 88px;
+}
+
+h2 {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.block-lead {
+  margin-top: 12px;
+  max-width: 40em;
+  color: var(--muted);
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  margin-top: 36px;
+}
+
+.column {
+  padding-top: 18px;
+  border-top: 3px solid var(--border);
+}
+
+.column:first-child {
+  border-top-color: var(--blue);
+}
+
+.column:nth-child(2) {
+  border-top-color: var(--yellow);
+}
+
+.column p,
+.card p {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.card p {
+  flex: 1;
+  font-size: 0.97rem;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+/* Text pages: rules and 404 */
+
+.page {
+  padding-top: 88px;
+}
+
+.page h1 {
+  font-size: clamp(2.1rem, 4.5vw, 2.9rem);
+}
+
+.page-kicker {
+  margin-bottom: 16px;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--yellow);
+}
+
+.rules {
+  max-width: 40em;
+  margin: 40px 0 0;
+  padding-left: 1.8em;
+}
+
+.rules li {
+  padding-left: 0.5em;
+}
+
+.rules li + li {
+  margin-top: 16px;
+}
+
+.rules li::marker {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--muted);
+}
+
+.page-note {
+  max-width: 40em;
+  margin-top: 40px;
+  color: var(--muted);
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 104px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  padding-top: 28px;
+  padding-bottom: 40px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+/* Responsive */
+
+@media (max-width: 880px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 44px;
+    padding-top: 56px;
+    padding-bottom: 40px;
+  }
+
+  .columns,
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .columns {
+    gap: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .header {
+    padding-top: 24px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .header-nav {
+    gap: 12px;
+  }
+
+  .header-link {
+    font-size: 0.875rem;
+  }
+
+  .actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .card-code pre {
+    font-size: 0.8rem;
+    padding: 18px 16px 20px;
+  }
+
+  .block {
+    padding-top: 56px;
+  }
+
+  .block + .block {
+    padding-top: 64px;
+  }
+
+  .page {
+    padding-top: 56px;
+  }
+
+  .footer {
+    margin-top: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

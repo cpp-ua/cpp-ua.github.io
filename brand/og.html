@@ -1,0 +1,51 @@
+<!doctype html>
+<!--
+  Link preview image template, 1200x630. Pick the language with the URL hash:
+  #uk (default) or #en. Regenerate from the repository root:
+    google-chrome --headless=new --hide-scrollbars --virtual-time-budget=5000 --window-size=1200,630 \
+      --screenshot=og.png "file://$PWD/brand/og.html#uk"
+    google-chrome --headless=new --hide-scrollbars --virtual-time-budget=5000 --window-size=1200,630 \
+      --screenshot=og-en.png "file://$PWD/brand/og.html#en"
+-->
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Link preview template</title>
+<style>
+  @font-face { font-family: "Fixel Display"; src: url("../fonts/FixelDisplay-Bold.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "IBM Plex Mono"; src: url("../fonts/IBMPlexMono-400-latin.woff2") format("woff2"); font-weight: 400; }
+
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { position: relative; background: #131313; color: #f4f4f4; font-family: "Fixel Display", sans-serif; }
+
+  .wrap { position: absolute; left: 96px; right: 96px; bottom: 104px; }
+
+  .logo { display: inline-flex; align-items: baseline; font-weight: 700; font-size: 132px; line-height: 1; letter-spacing: -0.01em; }
+  .sep { position: relative; display: inline-block; width: .53em; height: .47em; margin: 0 .08em 0 .1em; }
+  .sep i { position: absolute; width: .2em; height: .2em; border-radius: 50%; background: #0057b7; }
+  .sep i:nth-child(1) { left: 0; top: 0; }
+  .sep i:nth-child(2) { right: 0; top: 0; }
+  .sep i:nth-child(3) { left: 0; bottom: 0; background: #ffd700; }
+  .sep i:nth-child(4) { right: 0; bottom: 0; background: #ffd700; }
+
+  .title { margin-top: 44px; font-size: 60px; line-height: 1.1; letter-spacing: -0.02em; }
+  .nowrap { white-space: nowrap; }
+  .url { margin-top: 22px; font: 400 30px "IBM Plex Mono", monospace; color: #a3a3a3; }
+  [lang="en"] { display: none; }
+  body[data-lang="en"] [lang="uk"] { display: none; }
+  body[data-lang="en"] [lang="en"] { display: block; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo">cpp<span class="sep"><i></i><i></i><i></i><i></i></span>ua</div>
+    <div class="title" lang="uk">Українська спільнота <span class="nowrap">C++-розробників</span></div>
+    <div class="title" lang="en">Ukrainian C++ community</div>
+    <div class="url">cpp.org.ua</div>
+  </div>
+  <script>
+    document.body.dataset.lang = location.hash.slice(1) || "uk";
+  </script>
+</body>
+</html>
